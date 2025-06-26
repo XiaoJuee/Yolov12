@@ -1,4 +1,10 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# --- ADD ATTENTION --- #
+# from ..Add_Module import ECA, CoordAtt, CBAM, GAM
+# from ..Add_Module import LEGM
+# --- ADD ATTENTION --- #
+
 """
 Ultralytics modules.
 
@@ -58,6 +64,9 @@ from .block import (
     SCDown,
     TorchVision,
     A2C2f,
+# --- ADD ATTENTION --- #
+
+# --- ADD ATTENTION --- #
 )
 from .conv import (
     CBAM,
@@ -161,5 +170,11 @@ __all__ = (
     "PSA",
     "TorchVision",
     "Index",
-    "A2C2f"
+    "A2C2f",
+# --- ADD ATTENTION --- #
+#    "ECA",
+#    "CBAM",
+#    "CoordAtt",
+#    "GAM"
+# --- ADD ATTENTION --- #
 )

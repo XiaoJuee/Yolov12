@@ -1,6 +1,10 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
 """Block modules."""
 
+# --- ADD ATTENTION --- #
+#from ..Add_Module import *
+# --- ADD ATTENTION --- #
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -50,6 +54,9 @@ __all__ = (
     "PSA",
     "SCDown",
     "TorchVision",
+# --- ADD ATTENTION --- #
+
+# --- ADD ATTENTION --- #
 )
 
 

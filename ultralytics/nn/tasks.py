@@ -1,5 +1,10 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
 
+# --- ADD ATTENTION --- #
+from .Add_Module import ECA, CoordAtt, CBAM, GAM
+from .Add_Module import LEGM
+# --- ADD ATTENTION --- #
+
 import contextlib
 import pickle
 import re
@@ -65,6 +70,9 @@ from ultralytics.nn.modules import (
     WorldDetect,
     v10Detect,
     A2C2f,
+# --- ADD ATTENTION --- #
+
+# --- ADD ATTENTION --- #
 )
 from ultralytics.utils import DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, colorstr, emojis, yaml_load
 from ultralytics.utils.checks import check_requirements, check_suffix, check_yaml
@@ -929,6 +937,9 @@ def attempt_load_one_weight(weight, device=None, inplace=True, fuse=False):
     # Return model and ckpt
     return model, ckpt
 
+# --- ADD ATTENTION --- #
+globals()["LEGM"] = LEGM  # 关键注册[1,3](@ref)
+# --- ADD ATTENTION --- #
 
 def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
     """Parse a YOLO model.yaml dictionary into a PyTorch model."""
@@ -1036,6 +1047,14 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
                 if scale in "lx":  # for L/X sizes
                     args.append(True)
                     args.append(1.5)
+        # ----- ADD ATTENTION / add attention ------ #
+        elif m in {ECA,CoordAtt,CBAM,GAM}:
+            c2=ch[f]
+            args=[c2,*args]
+        elif m is LEGM:
+            c1 = ch[f]
+            args = [c1, *args]
+        # ----- ADD ATTENTION / add attention ------ #
         elif m is AIFI:
             args = [ch[f], *args]
         elif m in {HGStem, HGBlock}:
